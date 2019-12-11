@@ -25,16 +25,7 @@ public class CalculatorModel {
     private char operator;
     private double result;
 
-    public CalculatorModel(){
-
-    }
-
-    public CalculatorModel(double operand1, double operand2, char operator, double result) {
-        this.operand1 = operand1;
-        this.operand2 = operand2;
-        this.operator = operator;
-        this.result = result;
-    }
+    public CalculatorModel(){}
 
     private void setOperand1(double operand1) {
         this.operand1 = operand1;
@@ -50,27 +41,22 @@ public class CalculatorModel {
 
     public void setOperand1(String operand1) {
         // convert
-        this.operand1 = convert(operand1);
+        setOperand1(convert(operand1));
     }
 
     public void setOperand2(String operand2) {
         double value = convert(operand2);
         if(value == 0){
-            this.operand2 = 1;
+            setOperand2(1);
         }
         else{
-            this.operand2 = convert(operand2);
+            setOperand2(convert(operand2));
         }
 
     }
 
     public void setOperator(String operator) {
-        if(operator.length() == 1){
-            setOperator(operator.toCharArray()[0]);
-        }
-        else{
-
-        }
+        setOperator(operator.toCharArray()[operator.length()-1]);
     }
 
     private double convert(String number){
@@ -79,7 +65,7 @@ public class CalculatorModel {
             value = Double.parseDouble(number);
         }
         catch (Exception e){
-            value = 1;
+            System.out.println(e);
         }
         return value;
     }
@@ -103,6 +89,7 @@ public class CalculatorModel {
                 result = operand2;
                 break;
         }
+
         return result;
     }
 
